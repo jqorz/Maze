@@ -4,9 +4,12 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * ÉùÒô¿ØÖÆ
+ */
 class Sound {
-   private AudioClip audioClip;
-    private  boolean isPlaying = false;
+    private AudioClip audioClip;
+    private boolean isPlaying = false;
 
     void makeSound(String soundname) {
         try {

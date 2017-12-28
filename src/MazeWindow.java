@@ -1,26 +1,41 @@
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Hashtable;
 
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+/**
+ * 游戏控制主逻辑窗口
+ */
 public class MazeWindow extends JFrame implements ActionListener {
     private String currentMap;
     private Maze maze;
     private JMenuItem wallImage, roadImage, defaultImage, playerImage1, heroItem, heroclear;//声明菜单项对象
     private File mazeFile;
-    private String wallImageFile, roadImageFile;
+    private String wallImageFile = ConstantValue.WALL_IMAGE_NAME, roadImageFile = ConstantValue.ROAD_IMAGE_NAME;
     private JButton renew;//声明按钮对象
-    private String player = "person.gif";
+    private String player = ConstantValue.PLAYER_IMAGE_NAME;
     private ShowRecord showRecord;   //ShowRecord类 创建一个类对象
     private String[] mazeName;
-    private Hashtable hashtable = null;  //哈希表
 
     private MazeWindow() {
-        wallImageFile = "wall.gif";
-        roadImageFile = "road.jpg";
         JMenuBar bar = new JMenuBar();
         JMenu menuChoice = new JMenu("选择迷宫");
         File dir = new File(".");
@@ -76,13 +91,13 @@ public class MazeWindow extends JFrame implements ActionListener {
         renew.addActionListener(this);
         add(maze, BorderLayout.CENTER);//默认布局，如图3-7
         add(renew, BorderLayout.SOUTH);
-        hashtable = new Hashtable();
+        Hashtable hashtable = new Hashtable();
         for (int i = 0; i < file.length; i++) {
             hashtable.put(mazeName[i] + "1", mazeName[i] + "#" + 100 + "#匿名1");
             hashtable.put(mazeName[i] + "2", mazeName[i] + "#" + 100 + "#匿名2");
             hashtable.put(mazeName[i] + "3", mazeName[i] + "#" + 100 + "#匿名3");
         }
-        File file_HeroList = new File("英雄榜.txt");
+        File file_HeroList = new File(ConstantValue.HERO_LIST_NAME);
         if (!file_HeroList.exists()) {//英雄榜是File类对象；  boolean exists() 测试此抽象路径名表示的文件或目录是否存在。
 
             try {
@@ -117,6 +132,9 @@ public class MazeWindow extends JFrame implements ActionListener {
         return currentMap;
     }
 
+    /**
+     * 初始化相关资源
+     */
     private void init() {
         if (maze != null) {
             remove(maze);
@@ -167,7 +185,7 @@ public class MazeWindow extends JFrame implements ActionListener {
                 maze.getPerson().setImage(player);
             }
         } else if (e.getSource() == defaultImage) {
-            wallImageFile = ("wall.JPG");
+            wallImageFile = ("wall.jpg");
             roadImageFile = ("road.jpg");
             maze.setWallImage(wallImageFile);
             maze.setRoadImage(roadImageFile);
@@ -179,7 +197,7 @@ public class MazeWindow extends JFrame implements ActionListener {
             showRecord.readAndShow();
             showRecord.setVisible(true);
         } else if (e.getSource() == heroclear) {
-            File f = new File("英雄榜.txt");
+            File f = new File(ConstantValue.HERO_LIST_NAME);
             f.delete();
             JFrame t = new JFrame("提示！");
             t.setFont(new Font("楷体", Font.BOLD, 30));

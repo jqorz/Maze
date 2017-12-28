@@ -1,24 +1,35 @@
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ * 移动控制类
+ */
 public class HandleMove extends JPanel implements KeyListener, ActionListener {
     private MazePoint[][] p;
     private int spendTime = 0;
     private javax.swing.Timer recordTime;
     private JTextField showTime;
-    private String maze ;  //MazeWindow类创建一个对象指向currentMap 。字符串
+    private String maze;  //MazeWindow类创建一个对象指向currentMap 。字符串
     private Sound sound;
 
     HandleMove(MazeWindow mazeWindow) {
         recordTime = new javax.swing.Timer(1000, this);
         showTime = new JTextField(16);
         sound = new Sound();
-        maze =mazeWindow.getCurrentMap();
+        maze = mazeWindow.getCurrentMap();
         showTime.setEditable(false);
         showTime.setHorizontalAlignment(JTextField.CENTER);
         showTime.setFont(new Font("楷体_GB2312", Font.BOLD, 16));
-        JLabel hitMess = new JLabel("单击走迷宫者，按键盘方向键", new ImageIcon("龙珠2.gif"), JLabel.CENTER);
+        JLabel hitMess = new JLabel("单击走迷宫者，按键盘方向键", JLabel.CENTER);
         hitMess.setFont(new Font("楷体_GB2312", Font.BOLD, 18));
         add(hitMess);
         add(showTime);
@@ -56,7 +67,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
             }
         }
         if (spendTime > 3) {
-            person.setImage("zhu.jpg");
+            person.setImage(ConstantValue.PIG_IMAGE_NAME);
 
         }
 
@@ -66,7 +77,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
                 if (sound.isPlaying()) {
                     sound.stop();
                 }
-                sound.makeSound("walk.wav");
+                sound.makeSound(ConstantValue.WALK_SOUND_NAME_1);
 
                 person.setAtMazePoint(p[k][n]);
                 person.setLocation(p[k][n].getX(), p[k][n].getY());
@@ -77,7 +88,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
                 if (sound.isPlaying()) {
                     sound.stop();
                 }
-                sound.makeSound("walk2.wav");
+                sound.makeSound(ConstantValue.WALK_SOUND_NAME_2);
                 person.setAtMazePoint(p[k][n]);
                 person.setLocation(p[k][n].getX(), p[k][n].getY());
             }
@@ -87,7 +98,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
                 if (sound.isPlaying()) {
                     sound.stop();
                 }
-                sound.makeSound("walk3.wav");
+                sound.makeSound(ConstantValue.WALK_SOUND_NAME_3);
                 person.setAtMazePoint(p[m][k]);
                 person.setLocation(p[m][k].getX(), p[m][k].getY());
             }
@@ -97,7 +108,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
                 if (sound.isPlaying()) {
                     sound.stop();
                 }
-                sound.makeSound("walk4.wav");
+                sound.makeSound(ConstantValue.WALK_SOUND_NAME_4);
                 person.setAtMazePoint(p[m][k]);
                 person.setLocation(p[m][k].getX(), p[m][k].getY());
             }

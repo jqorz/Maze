@@ -1,10 +1,16 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
+import javax.swing.JTextField;
+
+/**
+ * 玩家实体类
+ */
 public class PersonInMaze extends JTextField {
     private MazePoint point;
     private Toolkit tool;
-    private String person = "person.gif";
+    private String person = ConstantValue.PLAYER_IMAGE_NAME;
 
     PersonInMaze() {
         tool = getToolkit();  //获得工具包
@@ -31,6 +37,9 @@ public class PersonInMaze extends JTextField {
     }
 
 
+    /**
+     * 更改玩家的图片
+     */
     void setImage(String person) {
         this.person = person;
     }

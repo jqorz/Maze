@@ -1,14 +1,21 @@
-import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
-import java.awt.*;
 
+/**
+ * 墙与路的实体类
+ */
 public class WallOrRoad extends JPanel {
     private boolean isRoad, isWall, isEnter, isOut;
     private String wallImage, roadImage;
     private Toolkit tool;//创建IMAGE对象
 
-    WallOrRoad() {//完成wallroad的对象初始化
+    WallOrRoad() {
         tool = getToolkit();
     }
 

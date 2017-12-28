@@ -1,11 +1,24 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ * 输入记录的提示对话框
+ */
 public class Record extends JDialog implements ActionListener {
     private int time = 0;
     private String maze;
@@ -59,7 +72,7 @@ public class Record extends JDialog implements ActionListener {
     boolean isBrokenRecord(String key, int time)//在HandleMove中调用，key是迷宫名
     {
         boolean b = false;
-        File f = new File("英雄榜.txt");
+        File f = new File(ConstantValue.HERO_LIST_NAME);
         try {
             int n = 0;
             Hashtable hashtable = null;//构造一个哈希表
@@ -81,7 +94,7 @@ public class Record extends JDialog implements ActionListener {
     }
 
     private void writeRecord(String key, String message) {//key是迷宫文件名，message是记录地图名、时间、用户名的字符串
-        File f = new File("英雄榜.txt");
+        File f = new File(ConstantValue.HERO_LIST_NAME);
         try {
             int n1 = 0, n2 = 0, n3 = 0;
             String a;

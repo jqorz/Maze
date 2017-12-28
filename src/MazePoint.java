@@ -1,3 +1,6 @@
+/**
+ * 迷宫每个点的实体类
+ */
 class MazePoint {
     private int x, y; //分别表示容器坐标系中的x轴坐标和y轴坐标
     private WallOrRoad wallOrRoad = null;//存放一个WallorRoad的对象的引用表明WallorRoad对象在当前MazePoint对象上

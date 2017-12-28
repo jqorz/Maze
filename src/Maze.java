@@ -18,8 +18,8 @@ class Maze extends JLayeredPane {
 
     Maze(MazeWindow mazeWindow) {
         setLayout(null);
-        wallImage = "wall.gif";
-        roadImage = "road.jpg";
+        wallImage = ConstantValue.WALL_IMAGE_NAME;
+        roadImage = ConstantValue.ROAD_IMAGE_NAME;
         person = new PersonInMaze();
         handleMove = new HandleMove(mazeWindow);
         handleMove.initSpendTime();

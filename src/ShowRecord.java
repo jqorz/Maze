@@ -1,13 +1,21 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ * 显示英雄榜的对话框
+ */
 class ShowRecord extends JDialog {
-    private File file = new File("英雄榜.txt");
+    private File file = new File(ConstantValue.HERO_LIST_NAME);
     private JLabel Hero[][];
     private JLabel Hero2[][];
     private JLabel Hero3[][];
@@ -70,15 +78,15 @@ class ShowRecord extends JDialog {
                 StringTokenizer fenxi2 = new StringTokenizer(temp2, "#");
                 StringTokenizer fenxi3 = new StringTokenizer(temp3, "#");
 
-/*StringTokenizer类
-public StringTokenizer(String str,
-                       String delim)为指定字符串构造一个 string tokenizer。delim 参数中的字符都是分隔标记的分隔符。分隔符字符本身不作为标记。 
-注意，如果 delim 为 null，则此构造方法不抛出异常。但是，尝试对得到的 StringTokenizer 调用其他方法则可能抛出 NullPointerException。 
+                /*StringTokenizer类
+                public StringTokenizer(String str,
+                                       String delim)为指定字符串构造一个 string tokenizer。delim 参数中的字符都是分隔标记的分隔符。分隔符字符本身不作为标记。
+                注意，如果 delim 为 null，则此构造方法不抛出异常。但是，尝试对得到的 StringTokenizer 调用其他方法则可能抛出 NullPointerException。
 
 
-参数：
-str - 要分析的字符串。
-delim - 分隔符。*/
+                参数：
+                str - 要分析的字符串。
+                delim - 分隔符。*/
 
                 while (fenxi1.hasMoreTokens()) {/*hasMoreTokens类
                     public boolean hasMoreTokens()测试此 tokenizer 的字符串中是否还有更多的可用标记。如果此方法返回 true，那么后续调用无参数的 nextToken 方法将成功地返回一个标记。
