@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * ÉùÒô¿ØÖÆ
+ * å£°éŸ³æ§åˆ¶
  */
 class Sound {
     private AudioClip audioClip;

@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * ÒÆ¶¯¿ØÖÆÀà
+ * ç§»åŠ¨æ§åˆ¶ç±»
  */
 public class HandleMove extends JPanel implements KeyListener, ActionListener {
     private MazePoint[][] p;
     private int spendTime = 0;
     private javax.swing.Timer recordTime;
     private JTextField showTime;
-    private String maze;  //MazeWindowÀà´´½¨Ò»¸ö¶ÔÏóÖ¸ÏòcurrentMap ¡£×Ö·û´®
+    private String maze;  //MazeWindowç±»åˆ›å»ºä¸€ä¸ªå¯¹è±¡æŒ‡å‘currentMap ã€‚å­—ç¬¦ä¸²
     private Sound sound;
 
     HandleMove(MazeWindow mazeWindow) {
@@ -28,9 +28,9 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
         maze = mazeWindow.getCurrentMap();
         showTime.setEditable(false);
         showTime.setHorizontalAlignment(JTextField.CENTER);
-        showTime.setFont(new Font("¿¬Ìå_GB2312", Font.BOLD, 16));
-        JLabel hitMess = new JLabel("µ¥»÷×ßÃÔ¹¬Õß£¬°´¼üÅÌ·½Ïò¼ü", JLabel.CENTER);
-        hitMess.setFont(new Font("¿¬Ìå_GB2312", Font.BOLD, 18));
+        showTime.setFont(new Font("æ¥·ä½“_GB2312", Font.BOLD, 16));
+        JLabel hitMess = new JLabel("å•å‡»èµ°è¿·å®«è€…ï¼ŒæŒ‰é”®ç›˜æ–¹å‘é”®", JLabel.CENTER);
+        hitMess.setFont(new Font("æ¥·ä½“_GB2312", Font.BOLD, 18));
         add(hitMess);
         add(showTime);
         setBackground(Color.red);
@@ -73,7 +73,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
 
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             int k = Math.max(m - 1, 0);
-            if (p[k][n].getWallOrRoad().getIsRoad()) {//Âß¼­ÕæÊ±£¬×ßÃÔ¹¬Õß²»ÄÜ´©½øÇ½
+            if (p[k][n].getWallOrRoad().getIsRoad()) {//é€»è¾‘çœŸæ—¶ï¼Œèµ°è¿·å®«è€…ä¸èƒ½ç©¿è¿›å¢™
                 if (sound.isPlaying()) {
                     sound.stop();
                 }
@@ -118,7 +118,7 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         spendTime++;
-        showTime.setText("ÄúµÄÓÃÊ±£º" + spendTime + "Ãë");
+        showTime.setText("æ‚¨çš„ç”¨æ—¶ï¼š" + spendTime + "ç§’");
 
     }
 
@@ -129,12 +129,12 @@ public class HandleMove extends JPanel implements KeyListener, ActionListener {
         if (endPoint.getWallOrRoad().getIsOut()) {
             recordTime.stop();
             if (spendTime > 10) {
-                JOptionPane.showMessageDialog(this, "¹§Ï²Äú´³¹Ø³É¹¦£¬Ç×£¡µ«ÓÃÊ±³¬¹ı10ÃëÖÓ£¬ËÙ¶ÈÂıÁËĞ©Å¶£¡ÓÃÊ±£º" + spendTime + "Ãë", "ÏûÏ¢¿ò", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "æ­å–œæ‚¨é—¯å…³æˆåŠŸï¼Œäº²ï¼ä½†ç”¨æ—¶è¶…è¿‡10ç§’é’Ÿï¼Œé€Ÿåº¦æ…¢äº†äº›å“¦ï¼ç”¨æ—¶ï¼š" + spendTime + "ç§’", "æ¶ˆæ¯æ¡†", JOptionPane.INFORMATION_MESSAGE);
             } else
-                JOptionPane.showMessageDialog(this, "¹§Ï²Äú´³¹Ø³É¹¦£¬Ç×£¡ÓÃÊ±£º" + spendTime + "Ãë", "ÏûÏ¢¿ò", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "æ­å–œæ‚¨é—¯å…³æˆåŠŸï¼Œäº²ï¼ç”¨æ—¶ï¼š" + spendTime + "ç§’", "æ¶ˆæ¯æ¡†", JOptionPane.INFORMATION_MESSAGE);
 
             Record record = new Record();
-            if (record.isBrokenRecord(maze, spendTime))//ÅĞ¶ÏÊÇ·ñÆÆ¼ÍÂ¼           	  {
+            if (record.isBrokenRecord(maze, spendTime))//åˆ¤æ–­æ˜¯å¦ç ´çºªå½•           	  {
                 record.setMaze(maze);
             record.setTime(spendTime);
             record.setVisible(true);

@@ -5,7 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JTextField;
 
 /**
- * Íæ¼ÒÊµÌåÀà
+ * ç©å®¶å®ä½“ç±»
  */
 public class PersonInMaze extends JTextField {
     private MazePoint point;
@@ -13,11 +13,11 @@ public class PersonInMaze extends JTextField {
     private String person = ConstantValue.PLAYER_IMAGE_NAME;
 
     PersonInMaze() {
-        tool = getToolkit();  //»ñµÃ¹¤¾ß°ü
-        setEditable(false);//²»¿É¼û
-        setBorder(null);//ÎŞ±ß¿ò
-        setOpaque(false);//·ÇÍ¸Ã÷µÄ
-        setToolTipText("µ¥»÷ÎÒ£¬È»ºó°´¼üÅÌ·½Ïò¼ü");//ÌáÊ¾ĞÅÏ¢£¬ÈçÍ¼3-1ËùÊ¾¡£
+        tool = getToolkit();  //è·å¾—å·¥å…·åŒ…
+        setEditable(false);//ä¸å¯è§
+        setBorder(null);//æ— è¾¹æ¡†
+        setOpaque(false);//éé€æ˜çš„
+        setToolTipText("å•å‡»æˆ‘ï¼Œç„¶åæŒ‰é”®ç›˜æ–¹å‘é”®");//æç¤ºä¿¡æ¯ï¼Œå¦‚å›¾3-1æ‰€ç¤ºã€‚
     }
 
     MazePoint getAtMazePoint() {
@@ -28,17 +28,17 @@ public class PersonInMaze extends JTextField {
         point = p;
     }
 
-    public void paintComponent(Graphics g) {//ÉèÖÃ×ßÃÔ¹¬ÕßµÄÍ¼Æ¬
+    public void paintComponent(Graphics g) {//è®¾ç½®èµ°è¿·å®«è€…çš„å›¾ç‰‡
         super.paintComponent(g);
         int w = getBounds().width;
         int h = getBounds().height;
-        Image image = tool.getImage(person);//»ñµÃimageÍ¼Ïñ
-        g.drawImage(image, 0, 0, w, h, this);//»æÖÆimageÍ¼Ïñ
+        Image image = tool.getImage(person);//è·å¾—imageå›¾åƒ
+        g.drawImage(image, 0, 0, w, h, this);//ç»˜åˆ¶imageå›¾åƒ
     }
 
 
     /**
-     * ¸ü¸ÄÍæ¼ÒµÄÍ¼Æ¬
+     * æ›´æ”¹ç©å®¶çš„å›¾ç‰‡
      */
     void setImage(String person) {
         this.person = person;

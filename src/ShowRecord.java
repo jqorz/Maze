@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * ÏÔÊ¾Ó¢ĞÛ°ñµÄ¶Ô»°¿ò
+ * æ˜¾ç¤ºè‹±é›„æ¦œçš„å¯¹è¯æ¡†
  */
 class ShowRecord extends JDialog {
     private File file = new File(ConstantValue.HERO_LIST_NAME);
@@ -21,16 +21,16 @@ class ShowRecord extends JDialog {
     private JLabel Hero3[][];
     private String mazeName[];
 
-    ShowRecord(int mazeNum) {//frameÊÇMazeWindowµÄ¿ò¼Ü£¬mazeNumÊÇmazeNameµØÍ¼ÃûµÄ³¤¶È
-        setTitle("ÃÔ¹¬Ó¢ĞÛ°ñ");
+    ShowRecord(int mazeNum) {//frameæ˜¯MazeWindowçš„æ¡†æ¶ï¼ŒmazeNumæ˜¯mazeNameåœ°å›¾åçš„é•¿åº¦
+        setTitle("è¿·å®«è‹±é›„æ¦œ");
         setBounds(200, 200, 720, 600);
         setResizable(false);
         setVisible(false);
-        setModal(true);// public void setModal(boolean b)Ö¸¶¨´Ë dialog ÊÇ·ñÓ¦¸ÃÊÇÓĞÄ£Ê½µÄ¡£
+        setModal(true);// public void setModal(boolean b)æŒ‡å®šæ­¤ dialog æ˜¯å¦åº”è¯¥æ˜¯æœ‰æ¨¡å¼çš„ã€‚
         Hero = new JLabel[mazeNum][3];
         Hero2 = new JLabel[mazeNum][3];
         Hero3 = new JLabel[mazeNum][3];
-        for (int i = 0; i < mazeNum; i++) {//´´½¨15*3¸ö±êÇ©
+        for (int i = 0; i < mazeNum; i++) {//åˆ›å»º15*3ä¸ªæ ‡ç­¾
             for (int j = 0; j < 3; j++) {
                 Hero[i][j] = new JLabel();
                 Hero2[i][j] = new JLabel();
@@ -39,7 +39,7 @@ class ShowRecord extends JDialog {
 
         }
         JPanel pCenter = new JPanel();
-        pCenter.setLayout(new GridLayout(mazeNum * 3, 3));//ÉèÖÃ15*3¸öÍø¸ñ
+        pCenter.setLayout(new GridLayout(mazeNum * 3, 3));//è®¾ç½®15*3ä¸ªç½‘æ ¼
         for (int i = 0; i < mazeNum; i++) {
             for (int j = 0; j < 3; j++) {
                 pCenter.add(Hero[i][j]);
@@ -49,7 +49,7 @@ class ShowRecord extends JDialog {
 
 
         }
-        pCenter.setBorder(BorderFactory.createTitledBorder("µÚ  Ò»  Ãû" + "                                                          µÚ  ¶ş  Ãû" + "                                                        µÚ  Èı  Ãû"));
+        pCenter.setBorder(BorderFactory.createTitledBorder("ç¬¬  ä¸€  å" + "                                                          ç¬¬  äºŒ  å" + "                                                        ç¬¬  ä¸‰  å"));
 
         add(pCenter, BorderLayout.CENTER);
     }
@@ -59,18 +59,18 @@ class ShowRecord extends JDialog {
     }
 
 
-    void readAndShow() {//ÔÚMazeWindowµÄ*****´¦µ÷ÓÃ
+    void readAndShow() {//åœ¨MazeWindowçš„*****å¤„è°ƒç”¨
         try {
 
             FileInputStream in = new FileInputStream(file);/*FileInputStream(File file)
-            Í¨¹ı´ò¿ªÒ»¸öµ½Êµ¼ÊÎÄ¼şµÄÁ¬½ÓÀ´´´½¨Ò»¸ö FileInputStream£¬¸ÃÎÄ¼şÍ¨¹ıÎÄ¼şÏµÍ³ÖĞµÄ File ¶ÔÏó file Ö¸¶¨.
+            é€šè¿‡æ‰“å¼€ä¸€ä¸ªåˆ°å®é™…æ–‡ä»¶çš„è¿æ¥æ¥åˆ›å»ºä¸€ä¸ª FileInputStreamï¼Œè¯¥æ–‡ä»¶é€šè¿‡æ–‡ä»¶ç³»ç»Ÿä¸­çš„ File å¯¹è±¡ file æŒ‡å®š.
 	          */
-            ObjectInputStream object_in = new ObjectInputStream(in);//Ä¿±êÊäÈëÁ÷
+            ObjectInputStream object_in = new ObjectInputStream(in);//ç›®æ ‡è¾“å…¥æµ
             Hashtable hashtable = (Hashtable) object_in.readObject();
             object_in.close();
             in.close();
             int mazeNum = 6;
-            for (int i = 0; i < mazeNum; i++) {//ÉèÖÃÇ°ÈıÃû³É¼¨
+            for (int i = 0; i < mazeNum; i++) {//è®¾ç½®å‰ä¸‰åæˆç»©
                 String temp1 = (String) hashtable.get(mazeName[i] + "1");
                 String temp2 = (String) hashtable.get(mazeName[i] + "2");
                 String temp3 = (String) hashtable.get(mazeName[i] + "3");
@@ -78,28 +78,28 @@ class ShowRecord extends JDialog {
                 StringTokenizer fenxi2 = new StringTokenizer(temp2, "#");
                 StringTokenizer fenxi3 = new StringTokenizer(temp3, "#");
 
-                /*StringTokenizerÀà
+                /*StringTokenizerç±»
                 public StringTokenizer(String str,
-                                       String delim)ÎªÖ¸¶¨×Ö·û´®¹¹ÔìÒ»¸ö string tokenizer¡£delim ²ÎÊıÖĞµÄ×Ö·û¶¼ÊÇ·Ö¸ô±ê¼ÇµÄ·Ö¸ô·û¡£·Ö¸ô·û×Ö·û±¾Éí²»×÷Îª±ê¼Ç¡£
-                ×¢Òâ£¬Èç¹û delim Îª null£¬Ôò´Ë¹¹Ôì·½·¨²»Å×³öÒì³£¡£µ«ÊÇ£¬³¢ÊÔ¶ÔµÃµ½µÄ StringTokenizer µ÷ÓÃÆäËû·½·¨Ôò¿ÉÄÜÅ×³ö NullPointerException¡£
+                                       String delim)ä¸ºæŒ‡å®šå­—ç¬¦ä¸²æ„é€ ä¸€ä¸ª string tokenizerã€‚delim å‚æ•°ä¸­çš„å­—ç¬¦éƒ½æ˜¯åˆ†éš”æ ‡è®°çš„åˆ†éš”ç¬¦ã€‚åˆ†éš”ç¬¦å­—ç¬¦æœ¬èº«ä¸ä½œä¸ºæ ‡è®°ã€‚
+                æ³¨æ„ï¼Œå¦‚æœ delim ä¸º nullï¼Œåˆ™æ­¤æ„é€ æ–¹æ³•ä¸æŠ›å‡ºå¼‚å¸¸ã€‚ä½†æ˜¯ï¼Œå°è¯•å¯¹å¾—åˆ°çš„ StringTokenizer è°ƒç”¨å…¶ä»–æ–¹æ³•åˆ™å¯èƒ½æŠ›å‡º NullPointerExceptionã€‚
 
 
-                ²ÎÊı£º
-                str - Òª·ÖÎöµÄ×Ö·û´®¡£
-                delim - ·Ö¸ô·û¡£*/
+                å‚æ•°ï¼š
+                str - è¦åˆ†æçš„å­—ç¬¦ä¸²ã€‚
+                delim - åˆ†éš”ç¬¦ã€‚*/
 
-                while (fenxi1.hasMoreTokens()) {/*hasMoreTokensÀà
-                    public boolean hasMoreTokens()²âÊÔ´Ë tokenizer µÄ×Ö·û´®ÖĞÊÇ·ñ»¹ÓĞ¸ü¶àµÄ¿ÉÓÃ±ê¼Ç¡£Èç¹û´Ë·½·¨·µ»Ø true£¬ÄÇÃ´ºóĞøµ÷ÓÃÎŞ²ÎÊıµÄ nextToken ·½·¨½«³É¹¦µØ·µ»ØÒ»¸ö±ê¼Ç¡£
+                while (fenxi1.hasMoreTokens()) {/*hasMoreTokensç±»
+                    public boolean hasMoreTokens()æµ‹è¯•æ­¤ tokenizer çš„å­—ç¬¦ä¸²ä¸­æ˜¯å¦è¿˜æœ‰æ›´å¤šçš„å¯ç”¨æ ‡è®°ã€‚å¦‚æœæ­¤æ–¹æ³•è¿”å› trueï¼Œé‚£ä¹ˆåç»­è°ƒç”¨æ— å‚æ•°çš„ nextToken æ–¹æ³•å°†æˆåŠŸåœ°è¿”å›ä¸€ä¸ªæ ‡è®°ã€‚
 
-					·µ»Ø£º
-					µ±ÇÒ½öµ±¸Ã×Ö·û´®ÖĞµ±Ç°Î»ÖÃºóÖÁÉÙÓĞÒ»¸ö±ê¼ÇÊ±²ÅÎª true£»·ñÔòÎª false¡£
+					è¿”å›ï¼š
+					å½“ä¸”ä»…å½“è¯¥å­—ç¬¦ä¸²ä¸­å½“å‰ä½ç½®åè‡³å°‘æœ‰ä¸€ä¸ªæ ‡è®°æ—¶æ‰ä¸º trueï¼›å¦åˆ™ä¸º falseã€‚
                                                 */
                     for (int j = 0; j < 3; j++) {
-                        Hero[i][j].setText(fenxi1.nextToken());/*nextTokenÀà
-                        public String nextToken()·µ»Ø´Ë string tokenizer µÄÏÂÒ»¸ö±ê¼Ç¡£
+                        Hero[i][j].setText(fenxi1.nextToken());/*nextTokenç±»
+                        public String nextToken()è¿”å›æ­¤ string tokenizer çš„ä¸‹ä¸€ä¸ªæ ‡è®°ã€‚
 
-						·µ»Ø£º
-						´Ë string tokenizer µÄÏÂÒ»¸ö±ê¼Ç¡£ */
+						è¿”å›ï¼š
+						æ­¤ string tokenizer çš„ä¸‹ä¸€ä¸ªæ ‡è®°ã€‚ */
 
 
                     }

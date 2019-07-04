@@ -1,5 +1,5 @@
 /**
- * ±£´æ×ÊÔ´ÎÄ¼şµÄÃû³Æ
+ * ä¿å­˜èµ„æºæ–‡ä»¶çš„åç§°
  */
 
 class ConstantValue {
@@ -11,5 +11,5 @@ class ConstantValue {
      final static String WALK_SOUND_NAME_2 = "walk2.wav";
      final static String WALK_SOUND_NAME_3 = "walk3.wav";
      final static String WALK_SOUND_NAME_4 = "walk4.wav";
-     final static String HERO_LIST_NAME = "Ó¢ĞÛ°ñ.txt";
+     final static String HERO_LIST_NAME = "è‹±é›„æ¦œ.txt";
 }

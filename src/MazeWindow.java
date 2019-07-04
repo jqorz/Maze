@@ -22,22 +22,22 @@ import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * ÓÎÏ·¿ØÖÆÖ÷Âß¼­´°¿Ú
+ * æ¸¸æˆæ§åˆ¶ä¸»é€»è¾‘çª—å£
  */
 public class MazeWindow extends JFrame implements ActionListener {
     private String currentMap;
     private Maze maze;
-    private JMenuItem wallImage, roadImage, defaultImage, playerImage1, heroItem, heroclear;//ÉùÃ÷²Ëµ¥Ïî¶ÔÏó
+    private JMenuItem wallImage, roadImage, defaultImage, playerImage1, heroItem, heroclear;//å£°æ˜èœå•é¡¹å¯¹è±¡
     private File mazeFile;
     private String wallImageFile = ConstantValue.WALL_IMAGE_NAME, roadImageFile = ConstantValue.ROAD_IMAGE_NAME;
-    private JButton renew;//ÉùÃ÷°´Å¥¶ÔÏó
+    private JButton renew;//å£°æ˜æŒ‰é’®å¯¹è±¡
     private String player = ConstantValue.PLAYER_IMAGE_NAME;
-    private ShowRecord showRecord;   //ShowRecordÀà ´´½¨Ò»¸öÀà¶ÔÏó
+    private ShowRecord showRecord;   //ShowRecordç±» åˆ›å»ºä¸€ä¸ªç±»å¯¹è±¡
     private String[] mazeName;
 
     private MazeWindow() {
         JMenuBar bar = new JMenuBar();
-        JMenu menuChoice = new JMenu("Ñ¡ÔñÃÔ¹¬");
+        JMenu menuChoice = new JMenu("é€‰æ‹©è¿·å®«");
         File dir = new File(".");
         File[] file = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String name) {
@@ -45,12 +45,12 @@ public class MazeWindow extends JFrame implements ActionListener {
             }
         });
         if (file == null) {
-            System.out.println("Î´ÕÒµ½µØÍ¼ÎÄ¼ş");
+            System.out.println("æœªæ‰¾åˆ°åœ°å›¾æ–‡ä»¶");
             return;
         }
         mazeName = new String[file.length];
         for (int i = 0; i < file.length; i++) {
-            mazeName[i] = file[i].getName().substring(0, file[i].getName().length() - 5);//substring(½ØÈ¡µÄÆğÊ¼Î»ÖÃ£¬½ØÈ¡µÄ³¤¶È)£»
+            mazeName[i] = file[i].getName().substring(0, file[i].getName().length() - 5);//substring(æˆªå–çš„èµ·å§‹ä½ç½®ï¼Œæˆªå–çš„é•¿åº¦)ï¼›
         }
         for (String aMazeName : mazeName) {
             JMenuItem item = new JMenuItem(aMazeName);
@@ -60,54 +60,54 @@ public class MazeWindow extends JFrame implements ActionListener {
         mazeFile = new File(file[0].getName());
         currentMap = mazeName[0];
         init();
-        JMenu menuImage = new JMenu("Ñ¡ÔñÇ½ºÍÂ·µÄÍ¼Ïñ");
-        wallImage = new JMenuItem("Ç½µÄÍ¼Ïñ");//´´½¨²Ëµ¥Ïî¶ÔÏó
-        roadImage = new JMenuItem("Â·µÄÍ¼Ïñ");
-        playerImage1 = new JMenuItem("Íæ¼ÒÍ¼Ïñ");
-        defaultImage = new JMenuItem("Ç½ºÍÂ·µÄÄ¬ÈÏÍ¼Ïñ");
-        menuImage.add(wallImage);//²Ëµ¥ÏîÌí¼Óµ½²Ëµ¥ÉÏ£¬ÈçÍ¼3-5
+        JMenu menuImage = new JMenu("é€‰æ‹©å¢™å’Œè·¯çš„å›¾åƒ");
+        wallImage = new JMenuItem("å¢™çš„å›¾åƒ");//åˆ›å»ºèœå•é¡¹å¯¹è±¡
+        roadImage = new JMenuItem("è·¯çš„å›¾åƒ");
+        playerImage1 = new JMenuItem("ç©å®¶å›¾åƒ");
+        defaultImage = new JMenuItem("å¢™å’Œè·¯çš„é»˜è®¤å›¾åƒ");
+        menuImage.add(wallImage);//èœå•é¡¹æ·»åŠ åˆ°èœå•ä¸Šï¼Œå¦‚å›¾3-5
         menuImage.add(roadImage);
         menuImage.add(playerImage1);
         menuImage.add(defaultImage);
-        JMenu hero = new JMenu("Ó¢ĞÛ°ñ");
-        heroItem = new JMenuItem("²é¿´Ó¢ĞÛ°ñ");
-        heroclear = new JMenuItem("Çå¿ÕÓ¢ĞÛ°ñ");
+        JMenu hero = new JMenu("è‹±é›„æ¦œ");
+        heroItem = new JMenuItem("æŸ¥çœ‹è‹±é›„æ¦œ");
+        heroclear = new JMenuItem("æ¸…ç©ºè‹±é›„æ¦œ");
         hero.add(heroItem);
         hero.add(heroclear);
         bar.add(menuChoice);
-        bar.add(menuImage);//²Ëµ¥Ìí¼Óµ½²Ëµ¥ÌõÉÏ£¬ÈçÍ¼3-5
+        bar.add(menuImage);//èœå•æ·»åŠ åˆ°èœå•æ¡ä¸Šï¼Œå¦‚å›¾3-5
         bar.add(hero);
         setJMenuBar(bar);
-        wallImage.addActionListener(this);//Îª²Ëµ¥ÏîÌí¼Ó¼àÌıÆ÷
+        wallImage.addActionListener(this);//ä¸ºèœå•é¡¹æ·»åŠ ç›‘å¬å™¨
         roadImage.addActionListener(this);
         playerImage1.addActionListener(this);
         defaultImage.addActionListener(this);
         heroItem.addActionListener(this);
         heroclear.addActionListener(this);
-        renew = new JButton("ÖØĞÂ¿ªÊ¼");//Îª¡°ÖØĞÂ¿ªÊ¼¡±°´Å¥Ìí¼Ó¼àÌıÆ÷
-        Font font = new Font("¿¬Ìå", Font.BOLD, 30);
+        renew = new JButton("é‡æ–°å¼€å§‹");//ä¸ºâ€œé‡æ–°å¼€å§‹â€æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
+        Font font = new Font("æ¥·ä½“", Font.BOLD, 30);
         renew.setFont(font);
         renew.setVerticalAlignment(SwingConstants.TOP);
         renew.addActionListener(this);
-        add(maze, BorderLayout.CENTER);//Ä¬ÈÏ²¼¾Ö£¬ÈçÍ¼3-7
+        add(maze, BorderLayout.CENTER);//é»˜è®¤å¸ƒå±€ï¼Œå¦‚å›¾3-7
         add(renew, BorderLayout.SOUTH);
         Hashtable hashtable = new Hashtable();
         for (int i = 0; i < file.length; i++) {
-            hashtable.put(mazeName[i] + "1", mazeName[i] + "#" + 100 + "#ÄäÃû1");
-            hashtable.put(mazeName[i] + "2", mazeName[i] + "#" + 100 + "#ÄäÃû2");
-            hashtable.put(mazeName[i] + "3", mazeName[i] + "#" + 100 + "#ÄäÃû3");
+            hashtable.put(mazeName[i] + "1", mazeName[i] + "#" + 100 + "#åŒ¿å1");
+            hashtable.put(mazeName[i] + "2", mazeName[i] + "#" + 100 + "#åŒ¿å2");
+            hashtable.put(mazeName[i] + "3", mazeName[i] + "#" + 100 + "#åŒ¿å3");
         }
         File file_HeroList = new File(ConstantValue.HERO_LIST_NAME);
-        if (!file_HeroList.exists()) {//Ó¢ĞÛ°ñÊÇFileÀà¶ÔÏó£»  boolean exists() ²âÊÔ´Ë³éÏóÂ·¾¶Ãû±íÊ¾µÄÎÄ¼ş»òÄ¿Â¼ÊÇ·ñ´æÔÚ¡£
+        if (!file_HeroList.exists()) {//è‹±é›„æ¦œæ˜¯Fileç±»å¯¹è±¡ï¼›  boolean exists() æµ‹è¯•æ­¤æŠ½è±¡è·¯å¾„åè¡¨ç¤ºçš„æ–‡ä»¶æˆ–ç›®å½•æ˜¯å¦å­˜åœ¨ã€‚
 
             try {
                 FileOutputStream out = new FileOutputStream(file_HeroList);
                 ObjectOutputStream objectOut = new ObjectOutputStream(out);
-                objectOut.writeObject(hashtable);  //void writeObject(Object obj)  ½«Ö¸¶¨µÄ¶ÔÏóĞ´Èë ObjectOutputStream¡£
+                objectOut.writeObject(hashtable);  //void writeObject(Object obj)  å°†æŒ‡å®šçš„å¯¹è±¡å†™å…¥ ObjectOutputStreamã€‚
 
-                objectOut.close();     //void close() ¹Ø±ÕÁ÷¡£
+                objectOut.close();     //void close() å…³é—­æµã€‚
 
-                out.close();     //java.io Àà FileOutputStreaµÄ·½·¨    void close() ¹Ø±Õ´ËÎÄ¼şÊä³öÁ÷²¢ÊÍ·ÅÓë´ËÁ÷ÓĞ¹ØµÄËùÓĞÏµÍ³×ÊÔ´¡£
+                out.close();     //java.io ç±» FileOutputStreaçš„æ–¹æ³•    void close() å…³é—­æ­¤æ–‡ä»¶è¾“å‡ºæµå¹¶é‡Šæ”¾ä¸æ­¤æµæœ‰å…³çš„æ‰€æœ‰ç³»ç»Ÿèµ„æºã€‚
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -121,7 +121,7 @@ public class MazeWindow extends JFrame implements ActionListener {
         setBounds(60, 60, 510, 480);
 
         validate();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);/*EXIT_ON_CLOSE£ºÍË³öÓ¦ÓÃ³ÌĞòºóµÄÄ¬ÈÏ´°¿Ú¹Ø±Õ²Ù×÷*/
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);/*EXIT_ON_CLOSEï¼šé€€å‡ºåº”ç”¨ç¨‹åºåçš„é»˜è®¤çª—å£å…³é—­æ“ä½œ*/
     }
 
     public static void main(String args[]) {
@@ -133,7 +133,7 @@ public class MazeWindow extends JFrame implements ActionListener {
     }
 
     /**
-     * ³õÊ¼»¯Ïà¹Ø×ÊÔ´
+     * åˆå§‹åŒ–ç›¸å…³èµ„æº
      */
     private void init() {
         if (maze != null) {
@@ -152,7 +152,7 @@ public class MazeWindow extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == roadImage) {
-            JFileChooser chooser = new JFileChooser();//ÎÄ¼ş¶Ô»°¿ò
+            JFileChooser chooser = new JFileChooser();//æ–‡ä»¶å¯¹è¯æ¡†
             FileNameExtensionFilter filter = new FileNameExtensionFilter(
                     "JPG&GIF Images", "jpg", "gif");
             chooser.setFileFilter(filter);
@@ -191,7 +191,7 @@ public class MazeWindow extends JFrame implements ActionListener {
             maze.setRoadImage(roadImageFile);
         } else if (e.getSource() == renew) {
             init();
-        } else if (e.getSource() == heroItem)   //µã»÷Ó¢ĞÛ°ñ
+        } else if (e.getSource() == heroItem)   //ç‚¹å‡»è‹±é›„æ¦œ
         {
             showRecord.setMazeName(mazeName);
             showRecord.readAndShow();
@@ -199,15 +199,15 @@ public class MazeWindow extends JFrame implements ActionListener {
         } else if (e.getSource() == heroclear) {
             File f = new File(ConstantValue.HERO_LIST_NAME);
             f.delete();
-            JFrame t = new JFrame("ÌáÊ¾£¡");
-            t.setFont(new Font("¿¬Ìå", Font.BOLD, 30));
+            JFrame t = new JFrame("æç¤ºï¼");
+            t.setFont(new Font("æ¥·ä½“", Font.BOLD, 30));
             t.setSize(300, 215);
             t.setLocationRelativeTo(null);
             JPanel pan = new JPanel();
             t.setContentPane(pan);
             BorderLayout bLayout = new BorderLayout(20, 20);
             pan.setLayout(bLayout);
-            JLabel leb = new JLabel("Ó¢ĞÛ°ñÒÑÇå¿Õ£¬ÇëÖØĞÂÔØÈëÓÎÏ·¡£");
+            JLabel leb = new JLabel("è‹±é›„æ¦œå·²æ¸…ç©ºï¼Œè¯·é‡æ–°è½½å…¥æ¸¸æˆã€‚");
             pan.add(leb, BorderLayout.CENTER);
             t.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             t.setVisible(true);

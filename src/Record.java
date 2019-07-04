@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * ÊäÈë¼ÇÂ¼µÄÌáÊ¾¶Ô»°¿ò
+ * è¾“å…¥è®°å½•çš„æç¤ºå¯¹è¯æ¡†
  */
 public class Record extends JDialog implements ActionListener {
     private int time = 0;
@@ -27,18 +27,18 @@ public class Record extends JDialog implements ActionListener {
     private JButton btn_Sure, btn_Cancel;
 
     Record() {
-        setTitle("¼ÇÂ¼ÄãµÄ³É¼¨");
+        setTitle("è®°å½•ä½ çš„æˆç»©");
         setBounds(200, 200, 320, 300);
         setResizable(false);
         setModal(true);
-        btn_Sure = new JButton("È·¶¨");
-        btn_Cancel = new JButton("È¡Ïû");
+        btn_Sure = new JButton("ç¡®å®š");
+        btn_Cancel = new JButton("å–æ¶ˆ");
         textName = new JTextField(15);
-        textName.setText("ÄäÃû");
+        textName.setText("åŒ¿å");
         btn_Sure.addActionListener(this);
         btn_Cancel.addActionListener(this);
         setLayout(new GridLayout(2, 1));
-        label = new JLabel("ÄúÏÖÔÚÊÇ...¸ßÊÖ,ÊäÈëÄúµÄ´óÃûÉÏ°ñ°¡");
+        label = new JLabel("æ‚¨ç°åœ¨æ˜¯...é«˜æ‰‹,è¾“å…¥æ‚¨çš„å¤§åä¸Šæ¦œå•Š");
         add(label);
         JPanel p = new JPanel();
         p.add(textName);
@@ -50,7 +50,7 @@ public class Record extends JDialog implements ActionListener {
 
     void setMaze(String maze) {
         this.maze = maze;
-        label.setText(" ¹§Ï²£¡ÄãÆÆ¼ÍÂ¼ÁË£¡ÇëÊäÈëÄúµÄÃû×Ö");
+        label.setText(" æ­å–œï¼ä½ ç ´çºªå½•äº†ï¼è¯·è¾“å…¥æ‚¨çš„åå­—");
     }
 
     void setTime(int time) {
@@ -69,19 +69,19 @@ public class Record extends JDialog implements ActionListener {
         }
     }
 
-    boolean isBrokenRecord(String key, int time)//ÔÚHandleMoveÖĞµ÷ÓÃ£¬keyÊÇÃÔ¹¬Ãû
+    boolean isBrokenRecord(String key, int time)//åœ¨HandleMoveä¸­è°ƒç”¨ï¼Œkeyæ˜¯è¿·å®«å
     {
         boolean b = false;
         File f = new File(ConstantValue.HERO_LIST_NAME);
         try {
             int n = 0;
-            Hashtable hashtable = null;//¹¹ÔìÒ»¸ö¹şÏ£±í
+            Hashtable hashtable = null;//æ„é€ ä¸€ä¸ªå“ˆå¸Œè¡¨
             FileInputStream in = new FileInputStream(f);
             ObjectInputStream object_in = new ObjectInputStream(in);
             hashtable = (Hashtable) object_in.readObject();
             object_in.close();
             in.close();
-            String temp3 = (String) hashtable.get(key + "3");   //·µ»Ø´Ë¹şÏ£±íÖĞÖ¸¶¨¼üËùÓ³Éäµ½µÄÖµ
+            String temp3 = (String) hashtable.get(key + "3");   //è¿”å›æ­¤å“ˆå¸Œè¡¨ä¸­æŒ‡å®šé”®æ‰€æ˜ å°„åˆ°çš„å€¼
             StringTokenizer fenxi = new StringTokenizer(temp3, "#");
             fenxi.nextToken();
             n = Integer.parseInt(fenxi.nextToken());
@@ -93,7 +93,7 @@ public class Record extends JDialog implements ActionListener {
         return b;
     }
 
-    private void writeRecord(String key, String message) {//keyÊÇÃÔ¹¬ÎÄ¼şÃû£¬messageÊÇ¼ÇÂ¼µØÍ¼Ãû¡¢Ê±¼ä¡¢ÓÃ»§ÃûµÄ×Ö·û´®
+    private void writeRecord(String key, String message) {//keyæ˜¯è¿·å®«æ–‡ä»¶åï¼Œmessageæ˜¯è®°å½•åœ°å›¾åã€æ—¶é—´ã€ç”¨æˆ·åçš„å­—ç¬¦ä¸²
         File f = new File(ConstantValue.HERO_LIST_NAME);
         try {
             int n1 = 0, n2 = 0, n3 = 0;
@@ -112,16 +112,16 @@ public class Record extends JDialog implements ActionListener {
             StringTokenizer fenxi2 = new StringTokenizer(temp2, "#");
             StringTokenizer fenxi3 = new StringTokenizer(temp3, "#");
 
-/*StringTokenizerÀà
+/*StringTokenizerç±»
          public StringTokenizer(String str,
-         String delim)ÎªÖ¸¶¨×Ö·û´®¹¹ÔìÒ»¸ö string tokenizer¡£delim ²ÎÊıÖĞµÄ×Ö·û¶¼ÊÇ·Ö¸ô±ê¼ÇµÄ·Ö¸ô·û¡£·Ö¸ô·û×Ö·û±¾Éí²»×÷Îª±ê¼Ç¡£ 
-×¢Òâ£¬Èç¹û delim Îª null£¬Ôò´Ë¹¹Ôì·½·¨²»Å×³öÒì³£¡£µ«ÊÇ£¬³¢ÊÔ¶ÔµÃµ½µÄ StringTokenizer µ÷ÓÃÆäËû·½·¨Ôò¿ÉÄÜÅ×³ö NullPointerException¡£ 
+         String delim)ä¸ºæŒ‡å®šå­—ç¬¦ä¸²æ„é€ ä¸€ä¸ª string tokenizerã€‚delim å‚æ•°ä¸­çš„å­—ç¬¦éƒ½æ˜¯åˆ†éš”æ ‡è®°çš„åˆ†éš”ç¬¦ã€‚åˆ†éš”ç¬¦å­—ç¬¦æœ¬èº«ä¸ä½œä¸ºæ ‡è®°ã€‚ 
+æ³¨æ„ï¼Œå¦‚æœ delim ä¸º nullï¼Œåˆ™æ­¤æ„é€ æ–¹æ³•ä¸æŠ›å‡ºå¼‚å¸¸ã€‚ä½†æ˜¯ï¼Œå°è¯•å¯¹å¾—åˆ°çš„ StringTokenizer è°ƒç”¨å…¶ä»–æ–¹æ³•åˆ™å¯èƒ½æŠ›å‡º NullPointerExceptionã€‚ 
 
 
-²ÎÊı£º
-str - Òª·ÖÎöµÄ×Ö·û´®¡£
-delim - ·Ö¸ô·û¡£*/
-            fenxi1.nextToken();//nextToken() ·µ»Ø´Ë string tokenizer µÄÏÂÒ»¸ö±ê¼Ç¡£
+å‚æ•°ï¼š
+str - è¦åˆ†æçš„å­—ç¬¦ä¸²ã€‚
+delim - åˆ†éš”ç¬¦ã€‚*/
+            fenxi1.nextToken();//nextToken() è¿”å›æ­¤ string tokenizer çš„ä¸‹ä¸€ä¸ªæ ‡è®°ã€‚
             n1 = Integer.parseInt(fenxi1.nextToken());
             fenxi2.nextToken();
             n2 = Integer.parseInt(fenxi2.nextToken());
@@ -133,7 +133,7 @@ delim - ·Ö¸ô·û¡£*/
                 a = temp2;
                 temp2 = temp1;
                 temp3 = a;
-                hashtable.put(key + "1", message);//½«Ö¸¶¨ key Ó³Éäµ½´Ë¹şÏ£±íÖĞµÄÖ¸¶¨ value
+                hashtable.put(key + "1", message);//å°†æŒ‡å®š key æ˜ å°„åˆ°æ­¤å“ˆå¸Œè¡¨ä¸­çš„æŒ‡å®š value
                 hashtable.put(key + "2", temp2);
                 hashtable.put(key + "3", temp3);
                 FileOutputStream out = new FileOutputStream(f);
@@ -145,7 +145,7 @@ delim - ·Ö¸ô·û¡£*/
 
             } else if (time < n2) {
                 temp3 = temp2;
-                hashtable.put(key + "2", message);//½«Ö¸¶¨ key Ó³Éäµ½´Ë¹şÏ£±íÖĞµÄÖ¸¶¨ value
+                hashtable.put(key + "2", message);//å°†æŒ‡å®š key æ˜ å°„åˆ°æ­¤å“ˆå¸Œè¡¨ä¸­çš„æŒ‡å®š value
                 hashtable.put(key + "3", temp3);
                 FileOutputStream out = new FileOutputStream(f);
                 ObjectOutputStream object_out = new ObjectOutputStream(out);
@@ -154,7 +154,7 @@ delim - ·Ö¸ô·û¡£*/
                 out.close();
 
             } else if (time < n3) {
-                hashtable.put(key + "3", message);//½«Ö¸¶¨ key Ó³Éäµ½´Ë¹şÏ£±íÖĞµÄÖ¸¶¨ value
+                hashtable.put(key + "3", message);//å°†æŒ‡å®š key æ˜ å°„åˆ°æ­¤å“ˆå¸Œè¡¨ä¸­çš„æŒ‡å®š value
                 FileOutputStream out = new FileOutputStream(f);
                 ObjectOutputStream object_out = new ObjectOutputStream(out);
                 object_out.writeObject(hashtable);

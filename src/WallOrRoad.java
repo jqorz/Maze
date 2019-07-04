@@ -8,12 +8,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 /**
- * Ç½ÓëÂ·µÄÊµÌåÀà
+ * å¢™ä¸è·¯çš„å®ä½“ç±»
  */
 public class WallOrRoad extends JPanel {
     private boolean isRoad, isWall, isEnter, isOut;
     private String wallImage, roadImage;
-    private Toolkit tool;//´´½¨IMAGE¶ÔÏó
+    private Toolkit tool;//åˆ›å»ºIMAGEå¯¹è±¡
 
     WallOrRoad() {
         tool = getToolkit();
@@ -25,7 +25,7 @@ public class WallOrRoad extends JPanel {
 
     void setIsEnter() {
         isEnter = true;
-        add(new JLabel("Èë¿Ú"));//¶¨ÒåÃÔ¹¬µÄÈë¿Ú
+        add(new JLabel("å…¥å£"));//å®šä¹‰è¿·å®«çš„å…¥å£
     }
 
     boolean getIsOut() {
@@ -34,7 +34,7 @@ public class WallOrRoad extends JPanel {
 
     void setIsOut() {
         isOut = true;
-        add(new JLabel("³ö¿Ú"));//¶¨ÒåÃÔ¹¬µÄ³ö¿Ú
+        add(new JLabel("å‡ºå£"));//å®šä¹‰è¿·å®«çš„å‡ºå£
     }
 
     boolean getIsRoad() {
@@ -43,7 +43,7 @@ public class WallOrRoad extends JPanel {
 
     void setIsRoad() {
         isRoad = true;
-        setBorder(null);//´Ë×é¼ş±ß¿òÎªÎŞ
+        setBorder(null);//æ­¤ç»„ä»¶è¾¹æ¡†ä¸ºæ— 
     }
 
     boolean getIsWall() {

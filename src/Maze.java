@@ -31,8 +31,8 @@ class Maze extends JLayeredPane {
         char[][] a;
         RandomAccessFile in;
         try {
-            in = new RandomAccessFile(f, "r"); //´´½¨RandomAccessFileÀàµÄÖ»¶Á¶ÔÏó
-    /*RandomAccessFileÊÇÓÃÀ´·ÃÎÊÄÇĞ©±£´æÊı¾İ¼ÇÂ¼µÄÎÄ¼şµÄ£¬ÕâÑùÄã¾Í¿ÉÒÔÓÃseek( )·½·¨À´·ÃÎÊ¼ÇÂ¼£¬²¢½øĞĞ¶ÁĞ´ÁË*/
+            in = new RandomAccessFile(f, "r"); //åˆ›å»ºRandomAccessFileç±»çš„åªè¯»å¯¹è±¡
+    /*RandomAccessFileæ˜¯ç”¨æ¥è®¿é—®é‚£äº›ä¿å­˜æ•°æ®è®°å½•çš„æ–‡ä»¶çš„ï¼Œè¿™æ ·ä½ å°±å¯ä»¥ç”¨seek( )æ–¹æ³•æ¥è®¿é—®è®°å½•ï¼Œå¹¶è¿›è¡Œè¯»å†™äº†*/
             long length = in.length();
             long position = 0;
             in.seek(position);
@@ -106,10 +106,10 @@ class Maze extends JLayeredPane {
             }
             handleMove.setMazePoint(mazePoint);
         } catch (IOException exp) {
-            JButton mess = new JButton("ÎŞĞ§µÄÃÔ¹¬ÎÄ¼ş");
+            JButton mess = new JButton("æ— æ•ˆçš„è¿·å®«æ–‡ä»¶");
             add(mess);
             mess.setBounds(30, 30, 100, 100);
-            mess.setFont(new Font("ËÎÌå", Font.BOLD, 30));
+            mess.setFont(new Font("å®‹ä½“", Font.BOLD, 30));
             System.out.println(exp + "mess");
         }
     }

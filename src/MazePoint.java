@@ -1,17 +1,17 @@
 /**
- * ÃÔ¹¬Ã¿¸öµãµÄÊµÌåÀà
+ * è¿·å®«æ¯ä¸ªç‚¹çš„å®ä½“ç±»
  */
 class MazePoint {
-    private int x, y; //·Ö±ğ±íÊ¾ÈİÆ÷×ø±êÏµÖĞµÄxÖá×ø±êºÍyÖá×ø±ê
-    private WallOrRoad wallOrRoad = null;//´æ·ÅÒ»¸öWallorRoadµÄ¶ÔÏóµÄÒıÓÃ±íÃ÷WallorRoad¶ÔÏóÔÚµ±Ç°MazePoint¶ÔÏóÉÏ
+    private int x, y; //åˆ†åˆ«è¡¨ç¤ºå®¹å™¨åæ ‡ç³»ä¸­çš„xè½´åæ ‡å’Œyè½´åæ ‡
+    private WallOrRoad wallOrRoad = null;//å­˜æ”¾ä¸€ä¸ªWallorRoadçš„å¯¹è±¡çš„å¼•ç”¨è¡¨æ˜WallorRoadå¯¹è±¡åœ¨å½“å‰MazePointå¯¹è±¡ä¸Š
 
-    MazePoint(int x, int y) {//¹¹Ôì·½·¨£¬ÓÃÀ´´´½¨MazePoint¶ÔÏó
+    MazePoint(int x, int y) {//æ„é€ æ–¹æ³•ï¼Œç”¨æ¥åˆ›å»ºMazePointå¯¹è±¡
         this.x = x;
         this.y = y;
     }
 
 
-    int getX() {//·µ»ØÆäÖĞµÄx×ø±ê
+    int getX() {//è¿”å›å…¶ä¸­çš„xåæ ‡
         return x;
     }
 
@@ -19,8 +19,8 @@ class MazePoint {
         return y;
     }
 
-    boolean equals(MazePoint p) {//ÅĞ¶Ïµ±Ç°MazePoint¶ÔÏóÊÇ·ñºÍ²ÎÊıÖ¸¶¨µÄMazePoint¶ÔÏóÏàÍ¬
-        //Èç¹ûMazePointµÄ¶ÔÏópµÄx£¬y£¬ÓëÉÏÃæ·µ»ØµÄx£¬y£¬ÏàÍ¬£¬Ôò·µ»Øtrue,·ñÔòfalse
+    boolean equals(MazePoint p) {//åˆ¤æ–­å½“å‰MazePointå¯¹è±¡æ˜¯å¦å’Œå‚æ•°æŒ‡å®šçš„MazePointå¯¹è±¡ç›¸åŒ
+        //å¦‚æœMazePointçš„å¯¹è±¡pçš„xï¼Œyï¼Œä¸ä¸Šé¢è¿”å›çš„xï¼Œyï¼Œç›¸åŒï¼Œåˆ™è¿”å›true,å¦åˆ™false
         return p.getX() == this.getX() && p.getY() == this.getY();
     }
 
@@ -28,7 +28,7 @@ class MazePoint {
         return wallOrRoad;
     }
 
-    void setWallOrRoad(WallOrRoad obj) {//½«²ÎÊıÖ¸¶¨µÄWallOrRoad¶ÔÏó·ÅÔÚµ±Ç°MazePoint¶ÔÏóÉÏ
+    void setWallOrRoad(WallOrRoad obj) {//å°†å‚æ•°æŒ‡å®šçš„WallOrRoadå¯¹è±¡æ”¾åœ¨å½“å‰MazePointå¯¹è±¡ä¸Š
         wallOrRoad = obj;
     }
 }
